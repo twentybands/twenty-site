@@ -3,50 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu Hub</title>
+  <title>twenty hub</title>
+
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0a0a0a;
+      font-family: 'Orbitron', sans-serif;
       color: white;
-      display: flex;
-      justify-content: center;
+      overflow-x: hidden;
+      background: black;
+    }
+
+    /* animated background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 20%, #00f0ff33, transparent 40%),
+                  radial-gradient(circle at 80% 80%, #ff003333, transparent 40%),
+                  radial-gradient(circle at 50% 50%, #0011ff22, transparent 60%);
+      animation: moveBg 8s infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes moveBg {
+      from { transform: scale(1) rotate(0deg); }
+      to { transform: scale(1.2) rotate(5deg); }
     }
 
     .container {
-      width: 100%;
-      max-width: 800px;
-      padding: 30px;
+      max-width: 900px;
+      margin: auto;
       text-align: center;
+      padding: 30px;
     }
 
-    .profile {
-      margin-top: 20px;
-      margin-bottom: 40px;
-    }
-
+    /* profile */
     .profile img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 2px solid #00fff2;
-      box-shadow: 0 0 20px #00fff2;
+      border: 2px solid #00f0ff;
+      box-shadow: 0 0 25px #00f0ff;
+      margin-top: 20px;
     }
 
     .username {
-      font-size: 28px;
+      font-size: 32px;
+      font-weight: 800;
       margin-top: 10px;
-      font-weight: bold;
-      text-shadow: 0 0 10px #00fff2;
+      position: relative;
+      text-shadow: 0 0 10px #00f0ff;
+      animation: flicker 2s infinite;
+    }
+
+    /* glitch effect */
+    .username::before,
+    .username::after {
+      content: "@twenty";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .username::before {
+      color: #ff0033;
+      animation: glitchTop 1.5s infinite linear alternate-reverse;
+    }
+
+    .username::after {
+      color: #00f0ff;
+      animation: glitchBottom 1.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitchTop {
+      0% { transform: translate(0,0); clip-path: inset(0 0 80% 0); }
+      100% { transform: translate(-2px,-2px); clip-path: inset(0 0 10% 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { transform: translate(0,0); clip-path: inset(80% 0 0 0); }
+      100% { transform: translate(2px,2px); clip-path: inset(10% 0 0 0); }
     }
 
     .discord {
-      margin-top: 5px;
+      margin-top: 8px;
       color: #aaa;
       font-size: 14px;
     }
 
+    /* list */
     .list {
       margin-top: 40px;
       display: flex;
@@ -56,30 +108,33 @@
 
     .item {
       background: rgba(255,255,255,0.05);
-      padding: 12px;
+      padding: 14px;
       border-radius: 10px;
       font-size: 18px;
-      letter-spacing: 1px;
-      box-shadow: 0 0 10px rgba(0,255,242,0.2);
       transition: 0.3s;
+      border: 1px solid transparent;
     }
 
     .item:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(0,255,242,0.6);
+      transform: scale(1.04);
+      border: 1px solid #00f0ff;
+      box-shadow: 0 0 20px #00f0ff55;
     }
 
     .tag {
-      color: #00fff2;
-      text-shadow: 0 0 8px #00fff2;
+      color: #00f0ff;
     }
+
   </style>
 </head>
 <body>
+
   <div class="container">
 
     <div class="profile">
-      <img src="https://via.placeholder.com/150" alt="profile" />
+      <!-- coloca aqui link do imgur ou qualquer imagem -->
+      <img src="https://i.imgur.com/yourimage.png" alt="pfp" />
+
       <div class="username">@twenty</div>
       <div class="discord">Discord: 20931412</div>
     </div>
@@ -94,7 +149,7 @@
       <div class="item"><span class="tag">@restritivos</span> - 4€</div>
       <div class="item"><span class="tag">@estatuto</span> - 8€</div>
       <div class="item"><span class="tag">@atuacao</span> - 4€</div>
-      <br/>
+
       <div class="item"><span class="tag">@imponderably</span> - 15€</div>
       <div class="item"><span class="tag">@blandnesses</span> - 8€</div>
       <div class="item"><span class="tag">@unhealthfully</span> - 12€</div>
@@ -108,5 +163,6 @@
     </div>
 
   </div>
+
 </body>
 </html>
